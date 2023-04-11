@@ -56,9 +56,9 @@ export const Details = () => {
         <>
 
             {/* Modal Code starts */}
-            <div className="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog">
-                    <div className="modal-content">
+            <div className="modal fade " id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog rounded-primary" style={{ border: "3px solid balck" }}>
+                    <div className="modal-content ">
                         <div className="modal-header fs-4">
                             <div className="text-center" id="exampleModalLabel">Create Account</div>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -72,7 +72,7 @@ export const Details = () => {
             {/* Modal Code ends */}
 
             {/* Modal Code starts */}
-            <div className="modal fade" id="exampleModal2" aria-labelledby="exampleModalLabel" aria-hidden="false">
+            <div className="modal fade rounded" id="exampleModal2" aria-labelledby="exampleModalLabel" aria-hidden="false">
                 <div className="modal-dialog" >
                     <div className="modal-content" style={{ backgroundColor: "RGB(198 211 217)" }}>
                         <div className="modal-header fs-4" >
