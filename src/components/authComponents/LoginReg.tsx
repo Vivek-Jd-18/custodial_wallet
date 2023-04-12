@@ -167,6 +167,7 @@ export const LoginReg = ({ changeFun }: any) => {
                 progress: undefined,
                 theme: "dark",
               });
+              setToggle(false);
             }
           })
           .catch((error) => {

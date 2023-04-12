@@ -13,38 +13,38 @@ export const CreateWallet = () => {
 
     const handleInput = (e: any) => {
         setAccName(e.target.value);
-        if(accName.length>0){
+        if (accName.length > 0) {
             setActiveCreate(true);
-        }else{
+        } else {
             setActiveCreate(false);
         }
     }
 
 
-    const call = async () => {
-        async function connect() {
-            const externalProvider = await web3Modal.connect();
-            return new ethers.providers.Web3Provider(externalProvider);
-        }
-        const web3Modal = new Web3Modal({
-            network: 'mainnet',
-            cacheProvider: true,
-        });
-        const provider = await connect();
-        const { chainId } = await provider.getNetwork();
-        // validateNetwork(chainId);
-        await provider.getNetwork();
-        const signer = provider.getSigner(0);
-        const address = await signer.getAddress();
-        const balance = provider.getBalance(address);
-        setAddress(address);
-        setBalance((await balance).toString());
-        setSigner(signer);
-        setChainId(chainId);
-        console.log(address, balance, signer, chainId, 'all details');
-        //need to make these variables avialable to all components
-        return { address, balance, signer, chainId };
-    };
+    // const call = async () => {
+    //     async function connect() {
+    //         const externalProvider = await web3Modal.connect();
+    //         return new ethers.providers.Web3Provider(externalProvider);
+    //     }
+    //     const web3Modal = new Web3Modal({
+    //         network: 'mainnet',
+    //         cacheProvider: true,
+    //     });
+    //     const provider = await connect();
+    //     const { chainId } = await provider.getNetwork();
+    //     // validateNetwork(chainId);
+    //     await provider.getNetwork();
+    //     const signer = provider.getSigner(0);
+    //     const address = await signer.getAddress();
+    //     const balance = provider.getBalance(address);
+    //     setAddress(address);
+    //     setBalance((await balance).toString());
+    //     setSigner(signer);
+    //     setChainId(chainId);
+    //     console.log(address, balance, signer, chainId, 'all details');
+    //     //need to make these variables avialable to all components
+    //     return { address, balance, signer, chainId };
+    // };
 
     const createFun = async () => {
         const wallet = ethers.Wallet.createRandom();
@@ -52,13 +52,14 @@ export const CreateWallet = () => {
         console.log('mnemonic:', wallet.mnemonic?.phrase, "phrase");
         console.log('privateKey:', wallet.privateKey, "privateKey");
     }
+
     return (
         <>
             <div className="container">
                 <label>Account Name</label>
                 <br />
                 <br />
-                <input className='form-control' type='text' placeholder='e.g. Account 1' onChange={handleInput}/>
+                <input className='form-control' type='text' placeholder='e.g. Account 1' onChange={handleInput} />
                 <div className="modal-footer">
                     <button type="button" className="btn btn-secondary btn-rounded" data-bs-dismiss="modal">Cancel</button>
                     {

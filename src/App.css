@@ -1,12 +1,7 @@
+body{
+ background-color: rgb(255, 255, 255); 
+}
 .extra{
   display: flex;
   flex-direction: row;
-}
-.modal-dialog{
-  background-color: black !important;
-  
-}
-
-input{
-  
 }

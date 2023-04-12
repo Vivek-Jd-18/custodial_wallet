@@ -2,7 +2,7 @@ import React from 'react'
 
 export const Transactions = () => {
     return (
-        <div>
+        <div className='bg-dark'>
             <ul className="list-group">
                 <div className='d-flex flex-row list-group-item justify-content-between '>
                     <div className='d-flex flex-column '>

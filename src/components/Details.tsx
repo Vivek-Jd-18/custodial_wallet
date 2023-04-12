@@ -5,13 +5,12 @@ import { CreateWallet } from './CreateWallet';
 import { Footer1 } from './Footer1';
 import user1 from "../assets/user1.jpeg"
 import defaultUser from "../assets/defaultUser.png"
-// import buyPng from "../assets/buy.png"
-// import sendPng from "../assets/sendIcon.png"
-// import swapPng from "../assets/swapIcon.png"
 import { SendTo } from './SendTo';
 import SwapHorizontalCircleIcon from '@mui/icons-material/SwapHorizontalCircle';
 import SendIcon from '@mui/icons-material/Send';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import mtmskIcon from "../assets/metamask-metamask-wallet.png"
+import { ImportTokens } from './ImportTokens';
 
 export const Details = () => {
     const [address, setAddress] = useState<string>('');
@@ -37,7 +36,7 @@ export const Details = () => {
         const address = await signer.getAddress();
         const balance = provider.getBalance(address);
         setAddress(address);
-        setBalance((await balance).toString());
+        setBalance((await (Number(balance)/10**18)).toString());
         setSigner(signer);
         setChainId(chainId);
         console.log(address, balance, signer, chainId, 'all details');
@@ -57,7 +56,7 @@ export const Details = () => {
 
             {/* Modal Code starts */}
             <div className="modal fade " id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog rounded-primary" style={{ border: "3px solid balck" }}>
+                <div className="modal-dialog" >
                     <div className="modal-content ">
                         <div className="modal-header fs-4">
                             <div className="text-center" id="exampleModalLabel">Create Account</div>
@@ -78,8 +77,8 @@ export const Details = () => {
                         <div className="modal-header fs-4" >
                             <div className="text-center" id="exampleModalLabel" style={{ fontSize: "18px" }}>Send To</div>
                             <a data-bs-dismiss="modal" style={{ cursor: "pointer", color: "blue", fontSize: "18px" }} aria-label="Close">Cancel</a>
-                        </div>
-                        <div className="modal-body">
+                            <div className="modal-body">
+                            </div>
                             <SendTo />
                         </div>
                     </div>
@@ -87,40 +86,48 @@ export const Details = () => {
             </div>
             {/* Modal Code ends */}
 
+            {/* Modal Code starts */}
+            <div className="modal fade " id="exampleModal3" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog" >
+                    <div className="modal-content ">
+                        <div className="modal-header fs-4">
+                            <div className="text-center" id="exampleModalLabel">Import Tokens</div>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                            <ImportTokens />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* Modal Code ends */}
 
 
             <div className="container">
-                <div className="row  d-flex flex-row">
+                <div className="row  d-flex flex-row ">
                     <div className="col-2">
                     </div>
                     <div className="col" >
                         <div className="container text-center">
                             <div className="d-flex flex-row mb-3">
-                                <div className="p-2"><div className="card" style={{ width: "800px" }}>
+                                <div className="p-2"><div className="card bg-dark" style={{ width: "800px" }}>
                                     <div className="card-body">
-                                        <div className='d-flex flex-row justify-content-between'>
-                                            {address ? <button className="btn btn-sm btn-primary" onClick={call}>Connected</button>
-                                                : <button className="btn btn-sm btn-primary" onClick={call}>Connect</button>}
-                                            <button type="button" className="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                Create Account
-                                            </button>
+                                        <div className='d-flex  flex-row-reverse'>
+                                            <div className="dropdown align-self-end">
+                                                <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Settings
+                                                </button>
+                                                <ul className="dropdown-menu">
+                                                    <li style={{ cursor: "pointer" }}>{address ? <a className="dropdown-item disabled" href="#">Metamask Connected!<img className='ms-2' src={mtmskIcon} width={20} height={20} /></a> : <a className="dropdown-item disabled" href="#" onClick={call}>Connect with Metamask<img className='ms-2' src={mtmskIcon} width={20} height={20} /></a>}</li>
+                                                    <li style={{ cursor: "pointer" }}><a className="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" >Create Account</a></li>
+                                                    <li style={{ cursor: "pointer" }}><a className="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal3"  >Import Tokens</a></li>
+                                                </ul>
+                                            </div>
                                         </div>
-                                        <div>{" : "}</div>
-                                        {/* <div className="card-title text-center"><h6>NAPA Wallet</h6></div> */}
-                                        {address ? <span className='d-flex flex-row justify-content-between'>
-                                            <div><h6>{address}<div style={{
-                                                background: "green",
-                                                borderRadius: "50%", width: "10px", height: " 10px"
-                                            }}></div></h6></div>
-                                        </span> : <span><h5>Not Connected</h5> <div style={{
-                                            background: "red",
-                                            borderRadius: "50%", width: "10px", height: " 10px"
-                                        }}></div></span>
-                                        }
                                         <hr />
-                                        <div className='container' style={{ minHeight: "150px" }}>
+                                        <div className='container text-white' style={{ minHeight: "150px" }}>
                                             {address ? <div><img src={user1} alt="Avatar" height={50} width={50} style={{ borderRadius: "50%" }} /></div> : <div><img src={defaultUser} alt="Avatar" height={50} width={50} style={{ borderRadius: "50%" }} /></div>}
-                                            {balance ? <h5>{Number(balance) / (10 ** 18)} {" "} <span>Sepolia ETH</span></h5> : <h5>Connect wallet first</h5>}
+                                            {balance ? <h5>{Number(balance) / (10 ** 18)} {" "} <span>Sepolia ETH</span></h5> : <h5>Login first</h5>}
                                             {balance ? <h5>{(Number(balance) / (10 ** 18)) * (156975)} {" "} <span>USD</span></h5> : null}
                                             <div className='d-flex flex-row justify-content-center gap-3'>
                                                 <div className='d-flex flex-column'><ShoppingCartIcon fontSize='large' onClick={() => alert("This Feature will be added soon!")} />

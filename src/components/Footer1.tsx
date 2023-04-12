@@ -12,15 +12,15 @@ export const Footer1 = () => {
 
     return (
         <>
-            <div className='container'>
+            <div className='container bg-dark'>
                 <div className="card mb-3" style={{ width: "auto" }}>
-                    <div className="card-body">
+                    <div className="card-body bg-dark">
                         <div className='d-flex flex-col m-auto justify-content-evenly m-3'>
                             <div className='m-2'>
                                 <a className="card-title " style={{ textDecoration: "none", cursor: "pointer" }}
                                     onClick={() => tabSwitchHandler(false)}>Assets</a>
                             </div>
-                            <div style={{ borderLeft: "solid #000000",marginBottom:"12px" }}></div>
+                            <div style={{ borderLeft: "solid #000000", marginBottom: "12px" }}></div>
                             <div className='m-2'>
                                 <a className="card-title" style={{ textDecoration: "none", cursor: "pointer" }}
                                     onClick={() => tabSwitchHandler(true)}>Activity</a>
