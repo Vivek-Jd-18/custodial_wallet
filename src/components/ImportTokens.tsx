@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { ethers } from 'ethers';
-import commonAbi from "../web3Functions/abis/commanToken.json";
+import commonAbi from "../web3Functions/abis/commonToken.json";
 import { MutatingDots } from 'react-loader-spinner'
 
 

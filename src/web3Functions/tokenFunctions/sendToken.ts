@@ -1,5 +1,5 @@
 import { ethers } from "ethers"
-import commonAbi from "../abis/commanToken.json"
+import commonAbi from "../abis/commonToken.json"
 
 // https://eth-sepolia.g.alchemy.com/v2/1v5h6i5Tpuc4-xvrPVnuFHn7xl6jX2qd
 

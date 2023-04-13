@@ -4,12 +4,12 @@ import { sha256 } from "js-sha256";
 import { ReactSession } from "react-client-session";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { MainContext } from "../../App";
+import { MainContext } from "../Aggregator";
 
 export const LoginReg = ({ changeFun }: any) => {
   const activeUser = useContext(MainContext);
 
-  const userApiUrl = "http://127.0.0.1:3001/user";
+  const userApiUrl = "http://127.0.0.1:3005/account";
 
   const [toggle, setToggle] = useState<boolean>(false);
   const [allowLogin, setAllowLogin] = useState<boolean>(false);
@@ -201,7 +201,7 @@ export const LoginReg = ({ changeFun }: any) => {
 
   return (
     <>
-      <ToastContainer
+      {/* <ToastContainer
         position="bottom-center"
         autoClose={3000}
         hideProgressBar={true}
@@ -212,7 +212,7 @@ export const LoginReg = ({ changeFun }: any) => {
         draggable
         pauseOnHover
         theme="dark"
-      />
+      /> */}
       <div
         className="m-auto mt-4 border rounded "
         style={{ width: "300px", padding: "20px" }}

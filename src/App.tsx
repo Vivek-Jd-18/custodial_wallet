@@ -7,20 +7,7 @@ import { ReactSession } from 'react-client-session';
 import { Aggregator } from './components/Aggregator';
 import { ToastContainer } from 'react-toastify';
 
-export const MainContext = createContext("0000");
-
 function App() {
-
-  // const [activeUser, SetActiveUser] = useState<any>("");
-  // const changeActiveUser = async (data: any) => {
-  //   SetActiveUser(data)
-  //   localStorage.setItem("username", data);
-  //   console.log(localStorage.getItem("username"), "current user")
-  // }
-
-  // useEffect(() => {
-  //   SetActiveUser(localStorage.getItem("username"))
-  // }, [activeUser])
 
   return (
     <div>

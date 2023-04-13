@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { ethers } from 'ethers';
 import Web3Modal from 'web3modal';
 import { CreateWallet } from './CreateWallet';
@@ -11,12 +11,17 @@ import SendIcon from '@mui/icons-material/Send';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import mtmskIcon from "../assets/metamask-metamask-wallet.png"
 import { ImportTokens } from './ImportTokens';
+import { MainContext } from "./Aggregator"
+import { AllChainId } from "../web3Functions/constants/chainIds"
+import { NetworkInterface } from './Aggregator';
 
 export const Details = () => {
     const [address, setAddress] = useState<string>('');
     const [balance, setBalance] = useState<string>('');
     const [signer, setSigner] = useState<any>();
     const [chainId, setChainId] = useState<number>();
+
+    const { network, changeNetwork } = useContext(MainContext);
 
 
     const call = async () => {
@@ -36,7 +41,7 @@ export const Details = () => {
         const address = await signer.getAddress();
         const balance = provider.getBalance(address);
         setAddress(address);
-        setBalance((await (Number(balance)/10**18)).toString());
+        setBalance((await (Number(balance) / 10 ** 18)).toString());
         setSigner(signer);
         setChainId(chainId);
         console.log(address, balance, signer, chainId, 'all details');
@@ -50,6 +55,74 @@ export const Details = () => {
         console.log('mnemonic:', wallet.mnemonic?.phrase, "phrase");
         console.log('privateKey:', wallet.privateKey, "privateKey");
     }
+
+    const switchNetwork = (nw: number) => {
+        if (nw == 0) {
+            changeNetwork({
+                name: AllChainId[0].name,
+                chainId: AllChainId[0].chainId,
+                currencySymbol: AllChainId[0].currencySymbol,
+                rpcURL: AllChainId[0].rpcURL,
+                explorerURL: AllChainId[0].explorerURL
+            });
+        } else if (nw == 1) {
+            changeNetwork({
+                name: AllChainId[1].name,
+                chainId: AllChainId[1].chainId,
+                currencySymbol: AllChainId[1].currencySymbol,
+                rpcURL: AllChainId[1].rpcURL,
+                explorerURL: AllChainId[1].explorerURL
+            });
+        } else if (nw == 2) {
+            changeNetwork({
+                name: AllChainId[2].name,
+                chainId: AllChainId[2].chainId,
+                currencySymbol: AllChainId[2].currencySymbol,
+                rpcURL: AllChainId[2].rpcURL,
+                explorerURL: AllChainId[2].explorerURL
+            });
+        } else if (nw == 3) {
+            changeNetwork({
+                name: AllChainId[3].name,
+                chainId: AllChainId[3].chainId,
+                currencySymbol: AllChainId[3].currencySymbol,
+                rpcURL: AllChainId[3].rpcURL,
+                explorerURL: AllChainId[3].explorerURL
+            });
+        } else if (nw == 4) {
+            changeNetwork({
+                name: AllChainId[4].name,
+                chainId: AllChainId[4].chainId,
+                currencySymbol: AllChainId[4].currencySymbol,
+                rpcURL: AllChainId[4].rpcURL,
+                explorerURL: AllChainId[4].explorerURL
+            });
+        } else if (nw == 5) {
+            changeNetwork({
+                name: AllChainId[5].name,
+                chainId: AllChainId[5].chainId,
+                currencySymbol: AllChainId[5].currencySymbol,
+                rpcURL: AllChainId[5].rpcURL,
+                explorerURL: AllChainId[5].explorerURL
+            });
+        } else if (nw == 6) {
+            changeNetwork({
+                name: AllChainId[6].name,
+                chainId: AllChainId[6].chainId,
+                currencySymbol: AllChainId[6].currencySymbol,
+                rpcURL: AllChainId[6].rpcURL,
+                explorerURL: AllChainId[6].explorerURL
+            });
+        }
+        else {
+            alert("Wrong Network choice");
+        }
+    }
+
+    useEffect(() => {
+        console.log(network, "N\"W");
+    }, [network])
+
 
     return (
         <>
@@ -112,7 +185,19 @@ export const Details = () => {
                             <div className="d-flex flex-row mb-3">
                                 <div className="p-2"><div className="card bg-dark" style={{ width: "800px" }}>
                                     <div className="card-body">
-                                        <div className='d-flex  flex-row-reverse'>
+                                        <div className='d-flex  flex-row justify-content-between'>
+                                            <div className="dropdown align-self-end">
+                                                <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    {network.name}
+                                                </button>
+                                                <ul className="dropdown-menu">
+                                                    {AllChainId.map((i) => {
+                                                        return <li style={{ cursor: "pointer" }}><a className="dropdown-item" onClick={() => { switchNetwork(i.id) }}>{i.name}</a></li>
+                                                    })}
+                                                    {/* return
+                                                    <li><button onClick={() => { switchNetwork(0) }}>ETHEREUM MainNet</button></li> */}
+                                                </ul>
+                                            </div>
                                             <div className="dropdown align-self-end">
                                                 <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                     Settings
